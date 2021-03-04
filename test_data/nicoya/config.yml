@@ -1,5 +1,8 @@
 #offset_time = OT - tankplayer_starttime
 offset_time: 9.8
-tankfile: "nicoya.tnk"
+tankfile: 'nicoya.tnk'
 # Where is the starting SA.xml file:
 SA_file: './SA.xml'
+lat: 10.085
+lon: -85.315
+dep: 35

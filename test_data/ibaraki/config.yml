@@ -3,3 +3,6 @@ offset_time: 59.0
 tankfile: "ibaraki.tnk-big"
 # Where is the starting SA.xml file:
 SA_file: './SA.xml'
+lat: 36.1,
+lon: 141.25
+dep: 25

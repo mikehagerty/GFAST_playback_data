@@ -1,5 +1,8 @@
 #offset_time = OT - tankplayer_starttime
-offset_time: 3.66
+offset_time: 53.34
 tankfile: "kaikoura.tnk"
 # Where is the starting SA.xml file:
 SA_file: './SA.xml'
+lat: -42.737
+lon: 173.054
+dep: 15.1

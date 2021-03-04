@@ -4,7 +4,8 @@ OT:  2019-0706 03:19:53.221 UTC
 LOC: 35.7725, 242.3903
 DEP: 8.0 km
 
-Tankplayer start: 2019/07/06 03:18:53.00 = OT - 60.0 sec
+offset_time =   OT     - tankplayer_starttime
+offset_time = 6 03:19:53.22 - 03:18:53.00 = 60.22 sec
 
 WGPP.LXZ.PB.00 (0x32 0x30) 0 i4   1   1.0 2019/07/06 03:18:53.00 (1562383133.0000)
 ...

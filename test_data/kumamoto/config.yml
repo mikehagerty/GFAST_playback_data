@@ -1,5 +1,8 @@
 #offset_time = OT - tankplayer_starttime
 offset_time: 6.0
-tankfile: "kumamoto.tnk"
+tankfile: 'kumamoto.tnk'
 # Where is the starting SA.xml file:
 SA_file: './SA.xml'
+lat: 32.78
+lon: 130.73
+dep: 10

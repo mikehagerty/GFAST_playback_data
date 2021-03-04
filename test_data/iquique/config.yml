@@ -1,5 +1,8 @@
 #offset_time = OT - tankplayer_starttime
 offset_time: 10.26
-tankfile: "iquique.tnk"
+tankfile: 'iquique.tnk'
 #starting SA file
 SA_file: './SA.xml'
+lat: -19.610
+lon: -70.769
+dep: 25 km

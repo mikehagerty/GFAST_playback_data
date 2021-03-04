@@ -8,7 +8,8 @@ import xml.etree.ElementTree as ET
 
 from obspy.core.utcdatetime import UTCDateTime
 
-GFAST_EVENTS_DIR = "../GFAST/events"
+#GFAST_EVENTS_DIR = "../GFAST/events"
+GFAST_DIR = "./run"
 
 #known_events = ['iquique', 'kaikoura', 'maule', 'nicoya', 'ridgecrest', 'anchorage', 'kumamoto', 'ibaraki']
 known_events = []
@@ -25,7 +26,6 @@ def main():
 
     params_dir = os.environ.get('EW_PARAMS')
     cwd = os.getcwd()
-    target_dir = os.path.join(cwd, GFAST_EVENTS_DIR)
 
     if params_dir is None:
         print("You must source an EW env before running this!")
@@ -50,6 +50,9 @@ def main():
         SAfile = os.path.join(event_path, os.path.basename(config['SA_file']))
     except:
         raise
+
+    # Where SA.xml file will be dropped:
+    target_dir = os.path.join(GFAST_DIR, os.path.join(event, 'events'))
 
     # Copy tankplayer.d template to EW_PARAMS/tankplayer.d.gfast with WaveFile set to find this tankfile
     path = os.path.join(cwd, event)
@@ -94,6 +97,9 @@ def main():
     print("Stamp origin time:%s" % otime)
     #orig_time.text = orig_time.text.replace(orig_time.text, otime)
     SA = make_SA(config, otime)
+    SA_file = os.path.join(target_dir, 'SA.xml')
+    with open(SA_file, 'w') as f:
+        f.write(SA)
     print(SA)
     exit()
 

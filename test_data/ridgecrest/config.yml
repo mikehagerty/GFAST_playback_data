@@ -1,5 +1,8 @@
 #offset_time = OT - tankplayer_starttime
-offset_time: 60.0
-tankfile: "ridgecrest_gps_60.tnk"
+offset_time: 60.22
+tankfile: 'ridgecrest_gps_60.tnk'
 # Where is the starting SA.xml file:
 SA_file: './SA.xml'
+lat: 35.7725
+lon: 242.3903
+dep: 8.0
