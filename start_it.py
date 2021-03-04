@@ -5,6 +5,7 @@ import glob
 import sys
 import yaml
 import xml.etree.ElementTree as ET
+import shutil
 
 from obspy.core.utcdatetime import UTCDateTime
 
@@ -59,7 +60,7 @@ def main():
     delay_trigger = offset_time + TIME_FOR_EEW_SOLUTION
 
     # Where SA.xml file will be dropped:
-    target_dir = os.path.join(GFAST_DIR, os.path.join(event, 'events'))
+    gfast_events_dir = os.path.join(GFAST_DIR, os.path.join(event, 'events'))
 
     # Copy tankplayer.d template to EW_PARAMS/tankplayer.d.gfast with WaveFile set to find this tankfile
     path = os.path.join(cwd, event_path)
@@ -105,8 +106,8 @@ def main():
     print("    delay trigger:%.2f secs" % delay_trigger)
     #orig_time.text = orig_time.text.replace(orig_time.text, otime)
     SA = make_SA(config, otime)
-    SA_file = os.path.join(target_dir, 'SA.xml')
-    with open(SA_file, 'w') as f:
+
+    with open('tmp/SA.xml', 'w') as f:
         f.write(SA)
 
     # Start tankplayer
@@ -117,7 +118,9 @@ def main():
     #target = os.path.join(xmldir_out, os.path.basename(xmlfile))
 
     time.sleep(delay_trigger)
-    tree.write(target)
+    print("*********** STOP SLEEPING AND DROP SA.xml FILE *********")
+    dest = shutil.copy('tmp/SA.xml', gfast_events_dir)
+    #tree.write(target)
 
     return
 
