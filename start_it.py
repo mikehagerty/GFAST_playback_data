@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 from obspy.core.utcdatetime import UTCDateTime
 
 #GFAST_EVENTS_DIR = "../GFAST/events"
-GFAST_DIR = "./run"
+GFAST_DIR = "../run"
 
 # How many seconds, after an actual OT will EEW generate an origin and trigger GFAST ?
 # In reality, this would be the time it takes the P wave to reach the 4th closest station 
