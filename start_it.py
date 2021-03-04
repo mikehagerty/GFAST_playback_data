@@ -50,7 +50,7 @@ def main():
 
     try:
         offset_time = float(config['offset_time'])
-        tankfile = config['tankfile']
+        tnkfile = config['tankfile']
         SAfile = os.path.join(event_path, os.path.basename(config['SA_file']))
     except:
         raise
@@ -63,7 +63,7 @@ def main():
 
     # Copy tankplayer.d template to EW_PARAMS/tankplayer.d.gfast with WaveFile set to find this tankfile
     path = os.path.join(cwd, event)
-    tankfile = os.path.join(path, tankfile)
+    tnkfile = os.path.join(path, tnkfile)
 
     tankplayer_file = os.path.join(params_dir, 'tankplayer.d.gfast')
 
@@ -73,7 +73,7 @@ def main():
         lines = f.readlines()
     for i, line in enumerate(lines):
         if line[0:8] == 'WaveFile':
-            lines[i] = line.replace('WaveFile', 'WaveFile %s' % tankfile)
+            lines[i] = line.replace('WaveFile', 'WaveFile %s' % tnkfile)
 
     with open(tankplayer_file, 'w') as f:
         #f.write("%s" % lines)
