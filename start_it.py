@@ -11,12 +11,16 @@ from obspy.core.utcdatetime import UTCDateTime
 #GFAST_EVENTS_DIR = "../GFAST/events"
 GFAST_DIR = "./run"
 
-#known_events = ['iquique', 'kaikoura', 'maule', 'nicoya', 'ridgecrest', 'anchorage', 'kumamoto', 'ibaraki']
+# How many seconds, after an actual OT will EEW generate an origin and trigger GFAST ?
+# In reality, this would be the time it takes the P wave to reach the 4th closest station 
+#   + ~2 secs of waveform
+TIME_FOR_EEW_SOLUTION = 15
+# We want to drop our SA.xml in events and trigger gfast at offset + TIME_FOR_EEW_SOLUTION seconds
+#    into the tankplayer playback
+
 known_events = []
 for event in glob.glob('test_data/*'):
     known_events.append(os.path.basename(event))
-
-print(known_events)
 
 def main():
     '''
@@ -50,6 +54,9 @@ def main():
         SAfile = os.path.join(event_path, os.path.basename(config['SA_file']))
     except:
         raise
+
+    # Wait this many seconds before dropping the SA.xml file in the events dir to trigger gfast
+    delay_trigger = offset_time + TIME_FOR_EEW_SOLUTION
 
     # Where SA.xml file will be dropped:
     target_dir = os.path.join(GFAST_DIR, os.path.join(event, 'events'))
@@ -95,26 +102,21 @@ def main():
     otime = UTCDateTime.utcnow() + offset_time
     print("         Now time:%s" % timestamp)
     print("Stamp origin time:%s" % otime)
+    print("    delay trigger:%.2f secs" % delay_trigger)
     #orig_time.text = orig_time.text.replace(orig_time.text, otime)
     SA = make_SA(config, otime)
     SA_file = os.path.join(target_dir, 'SA.xml')
     with open(SA_file, 'w') as f:
         f.write(SA)
-    print(SA)
-    exit()
-
-    #print("chdir to:%s and look for tankfile:%s" % (params_dir, tankfile))
-    #print(os.path.join(params_dir, tankfile))
-    #os.chdir(params_dir)
 
     # Start tankplayer
-    thread = myThread(1, "Thread-1", 1, tankfile)
+    thread = myThread(1, "Thread-1", 1, tankplayer_file)
     thread.start()
 
     #os.chdir(cwd)
     #target = os.path.join(xmldir_out, os.path.basename(xmlfile))
 
-    time.sleep(30)
+    time.sleep(delay_trigger)
     tree.write(target)
 
     return
