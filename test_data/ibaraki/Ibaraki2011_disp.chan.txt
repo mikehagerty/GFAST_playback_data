@@ -1,3 +1,4 @@
+# first line is comment
 AA 0841 00 LXE 34.9498 139.0699 0.0 1.00 1000000.0 counts/m PPP   nan   nan
 AA 0841 00 LXN 34.9498 139.0699 0.0 1.00 1000000.0 counts/m PPP   nan   nan
 AA 0841 00 LXZ 34.9498 139.0699 0.0 1.00 1000000.0 counts/m PPP   nan   nan
