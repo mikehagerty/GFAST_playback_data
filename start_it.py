@@ -151,9 +151,9 @@ def make_SA(config, ot):
     version = 1
     timestamp = UTCDateTime.utcnow()
 
-    lat = config['lat']
-    lon = config['lon']
-    dep = config['dep']
+    lat = float(config['lat'])
+    lon = float(config['lon'])
+    dep = float(config['dep'])
 
     SA =  '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n'
     SA += '<event_message alg_vers="3.1.4-2018-11-08" category="live" ' \

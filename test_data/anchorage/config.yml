@@ -4,6 +4,6 @@ offset_time: 1.33
 tankfile: 'anchorage.tnk'
 #starting SA file
 SA_file: 'SA.xml'
-lat: 61.346,
+lat: 61.346
 lon: -149.955
 dep: 46.7
