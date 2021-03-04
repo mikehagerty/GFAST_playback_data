@@ -1,0 +1,8 @@
+#offset_time = OT - tankplayer_starttime
+offset_time: -1.0
+tankfile: 'tokachi.tnk'
+# Where is the starting SA.xml file:
+SA_file: 'SA.xml'
+lat: 41.815
+lon: 143.910
+dep: 27

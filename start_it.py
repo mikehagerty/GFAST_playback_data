@@ -6,9 +6,16 @@ import sys
 import yaml
 import xml.etree.ElementTree as ET
 
+from obspy.core.utcdatetime import UTCDateTime
+
 GFAST_EVENTS_DIR = "../GFAST/events"
 
-known_events = ['iquique', 'kaikoura', 'maule', 'nicoya', 'ridgecrest', 'anchorage', 'kumamoto', 'ibaraki']
+#known_events = ['iquique', 'kaikoura', 'maule', 'nicoya', 'ridgecrest', 'anchorage', 'kumamoto', 'ibaraki']
+known_events = []
+for event in glob.glob('test_data/*'):
+    known_events.append(os.path.basename(event))
+
+print(known_events)
 
 def main():
     '''
@@ -66,6 +73,7 @@ def main():
 
 
     # Modify the SA.xml file and drop it in the GFAST events dir
+    '''
     xmlfile = SAfile
     target = os.path.join(target_dir, os.path.basename(xmlfile))
 
@@ -73,15 +81,21 @@ def main():
     root = tree.getroot()
     core = root.find('core_info')
     orig_time = core.find('orig_time')
+    '''
     # The tankplayer will stamp the first packets to NOW
     #   So we adjust the OT by offset_time wrt actual first packet time:
-    timestamp = datetime.now(tz=timezone.utc).timestamp()
-    otime = datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-    print("         Now time:%s   [%f]" % (otime, timestamp))
-    timestamp = datetime.now(tz=timezone.utc).timestamp() + offset_time
-    otime = datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-    print("Stamp origin time:%s   [%f]" % (otime, timestamp))
-    orig_time.text = orig_time.text.replace(orig_time.text, otime)
+    #timestamp = datetime.now(tz=timezone.utc).timestamp()
+    #otime = datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    #print("         Now time:%s   [%f]" % (otime, timestamp))
+    #timestamp = datetime.now(tz=timezone.utc).timestamp() + offset_time
+    timestamp = UTCDateTime.utcnow()
+    otime = UTCDateTime.utcnow() + offset_time
+    print("         Now time:%s" % timestamp)
+    print("Stamp origin time:%s" % otime)
+    #orig_time.text = orig_time.text.replace(orig_time.text, otime)
+    SA = make_SA(config, otime)
+    print(SA)
+    exit()
 
     #print("chdir to:%s and look for tankfile:%s" % (params_dir, tankfile))
     #print(os.path.join(params_dir, tankfile))
@@ -116,6 +130,46 @@ class myThread (threading.Thread):
       print("*** Starting Python thread:" + self.name)
       os.system('tankplayer %s' % self.tankfile)
 
+#def make_SA(lat, lon, time, depth, mag):
+def make_SA(config, ot):
+
+    evid = '1111'
+    mag = 6.0
+    lat_uncer = .05
+    lon_uncer = .05
+    mag_uncer = .1
+    dep_uncer = 5
+    time_uncer = 1
+    version = 1
+    timestamp = UTCDateTime.utcnow()
+
+    lat = config['lat']
+    lon = config['lon']
+    dep = config['dep']
+
+    SA =  '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n'
+    SA += '<event_message alg_vers="3.1.4-2018-11-08" category="live" ' \
+          'instance="epic@eew-bk-prod1" message_type="update" orig_sys="PDL" ref_id="0" ref_src="" ' \
+          'timestamp="%s" version="%s">\n' % (timestamp, version)
+    SA += '  <core_info id="%s">\n' % evid
+    SA += '    <mag units="Mw">%f</mag>\n' % mag
+    SA += '    <mag_uncer units="Mw">%f</mag_uncer>\n' % mag_uncer
+    SA += '    <lat units="deg">%f</lat>\n' % lat
+    SA += '    <lat_uncer units="deg">%f</lat_uncer>\n' % lat_uncer
+    SA += '    <lon units="deg">%f</lon>\n' % lon
+    SA += '    <lon_uncer units="deg">%f</lon_uncer>\n' % lon_uncer
+
+    SA += '    <depth units="km">%f</depth>\n' % dep
+    SA += '    <depth_uncer units="km">%f</depth_uncer>\n' % dep_uncer
+
+    SA += '    <orig_time units="UTC">%s</orig_time>\n' % ot
+    SA += '    <orig_time_uncer units="UTC">%s</orig_time_uncer>\n' % time_uncer
+    #SA += '    <likelihood>1.0000</likelihood>\n'
+    #SA += '    <num_stations>%d</num_stations>\n' % num_stations
+    SA += '  </core_info>\n'
+    SA += '</event_message>'
+
+    return SA
 
 if __name__ == "__main__":
     main()

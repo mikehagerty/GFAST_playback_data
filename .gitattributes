@@ -1,1 +1,2 @@
 *.tnk-big filter=lfs diff=lfs merge=lfs -text
+*.sniff

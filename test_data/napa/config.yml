@@ -1,0 +1,8 @@
+#offset_time = OT - tankplayer_starttime
+offset_time: 10.0
+tankfile: 'napa.tnk'
+# Where is the starting SA.xml file:
+SA_file: 'SA.xml'
+lat: 38.215
+lon: 122.312
+dep: 11.1
