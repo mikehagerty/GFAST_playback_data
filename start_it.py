@@ -62,7 +62,7 @@ def main():
     target_dir = os.path.join(GFAST_DIR, os.path.join(event, 'events'))
 
     # Copy tankplayer.d template to EW_PARAMS/tankplayer.d.gfast with WaveFile set to find this tankfile
-    path = os.path.join(cwd, event)
+    path = os.path.join(cwd, event_path)
     tnkfile = os.path.join(path, tnkfile)
 
     tankplayer_file = os.path.join(params_dir, 'tankplayer.d.gfast')
