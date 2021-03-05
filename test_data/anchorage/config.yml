@@ -1,7 +1,7 @@
 #
 #offset_time = OT - tankplayer_starttime
 offset_time: 29.33
-tankfile: 'anchorage.tnk'
+tankfile: 'anchorage.tnk.cut'
 #starting SA file
 SA_file: 'SA.xml'
 lat: 61.346
