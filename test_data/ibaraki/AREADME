@@ -14,3 +14,10 @@ Tankfile:
 ...
 0897.LXZ.CI.20 (2 0) 0 i4    1 1.0 2011/03/11 06:23:40.00 (1299824620.0000) 2011/03/11 06:23:40.00 (1299824620.0000) 68bytes
 1106.LX1.CI.20 (2 0) 0 i4    1 1.0 2011/03/11 06:23:40.00 (1299824620.0000) 2011/03/11 06:23:40.00 (1299824620.0000) 68bytes
+
+[2021-03-04 Update]
+old_metadata
+Ibaraki2011_chanfile.dat - new chan file from M.Murray
+Ibaraki2011_chanfile_coor.dat - same but with coordinates --> I reformated this into ./Ibaraki2011_chanfile.txt	
+                                                              * also changed LY to LX to match tankfile packets
+Ibaraki2011_disp.chan.txt - from Ruhl et al
