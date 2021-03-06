@@ -1,7 +1,7 @@
 # net,sta,loc,chan,lat,lon,elev,samplerate,gain,units
-RK    mBB    00    LXE    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/cm    PPP    nan    nan
-RK    mBB    00    LXN    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/cm    PPP    nan    nan
-RK    mBB    00    LXZ    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/cm    PPP    nan    nan
+RK    CMBB    00    LXE    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
+RK    CMBB    00    LXN    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
+RK    CMBB    00    LXZ    38.0342    -120.3860    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
 RK    DIXN    00    LXE    38.4687    -121.8290    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
 RK    DIXN    00    LXN    38.4687    -121.8290    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
 RK    DIXN    00    LXZ    38.4687    -121.8290    0.0    1.00    1.000000e+06    counts/m    PPP    nan    nan
