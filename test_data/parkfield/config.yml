@@ -4,5 +4,5 @@ tankfile: 'parkfield.tnk'
 # Where is the starting SA.xml file:
 SA_file: 'SA.xml'
 lat: 35.818
-lon: 120.366
+lon: -120.366
 dep: 8.1
