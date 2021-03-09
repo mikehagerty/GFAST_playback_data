@@ -1,6 +1,6 @@
 #offset_time = OT - tankplayer_starttime
 offset_time: 59.12
-tankfile: 'tohoku.tnk'
+tankfile: 'tohoku.tnk-big'
 # Where is the starting SA.xml file:
 SA_file: 'SA.xml'
 lat: 38.297
